@@ -1,0 +1,67 @@
+class CarsRudri(
+    var name: String,
+    var cost: Int,
+    var insurance: Int,
+    var color: String,
+    var seat: Int
+) {
+  //High order function
+  def AvgInsurance(carList: List[CarsRudri]) = {
+    var avg = 0
+    var sum=0
+    carList.foreach(c => sum += c.insurance)
+    avg=sum/carList.length
+    avg
+  }
+  var myfc1 = (str1:String, str2:String) => str1 + str2
+  
+  //High order function
+  def HighCost(carList:List[CarsRudri])={
+    var high=0
+    carList.foreach(c=> {
+      if (high<=c.cost)
+        high=c.cost
+    })
+    high
+  }
+ 
+  def details()={
+    println("-----------------------------------")
+    println("Details of Car")
+    println("Name:"+name+"\nCost: $"+cost+"\nInsurance : $"+ insurance+"\nColor: "+color+"\nSeat: "+seat+"\n")
+  }
+  
+  
+}
+class Test{
+  def Cardetails(CarList:List[CarsRudri])={
+    var str=""
+    CarList.foreach((c:CarsRudri)=> str +=c.name+"\n")
+    str
+  }
+}
+object Main {
+  def main(args: Array[String]): Unit = {
+    var sienna = new CarsRudri("2021 Toyota Sienna", 20354, 6713, "White", 5)
+    var RAV4 = new CarsRudri("2021 Toyota RAV4 Hybrid", 14969, 6641, "Green", 4)
+    var Chevrolet =new CarsRudri("2021 Chevrolet Camaro", 11898, 6863, "Black", 2)
+     
+
+    val carList = List(sienna, RAV4, Chevrolet)
+    println("Average Insurance: " + sienna.AvgInsurance(carList))
+    
+    println("Highest cost:"+RAV4.HighCost(carList))
+    
+    Chevrolet.details()
+    
+    //Anonymous function
+    //var CarDetails = (name:String, cost:Int) => "The cost of "+name +"is "+ cost +"\n" 
+    
+    //Anonymous function call
+    //println(CarDetails("2021 Chevrolet Camaro", 11898))
+    
+    val t=new Test()
+    println("Anonymous function call which is outside main")
+    println("Cars Details Which Rudri have: \n"+t.Cardetails(carList))
+  }
+}
